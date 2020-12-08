@@ -18,9 +18,14 @@ class CheckResponseBodyAndExtract extends Simulation {
       .get("videogames")
       .check(jsonPath(s"${1}.id").saveAs("gameId")))
 
+    .exec { session => println(session); session }
+
     .exec(http("get specific video game")
       .get("videogames/${gameId}")
-      .check(jsonPath("$.name").is("Gran Turismo 3")))
+      .check(jsonPath("$.name").is("Gran Turismo 3"))
+      .check(bodyString.saveAs("responseBody")))
+
+    .exec { session => println(session("responseBody").as[String]); session }
 
   setUp(
     scn.inject(atOnceUsers(1))
