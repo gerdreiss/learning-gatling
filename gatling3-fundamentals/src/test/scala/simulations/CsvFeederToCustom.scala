@@ -7,7 +7,7 @@ import io.gatling.http.Predef._
 class CsvFeederToCustom extends Simulation {
   val httpConf = http.baseUrl("http://localhost:8080/app/")
     .header("Accept", "application/json")
-    //.proxy(Proxy("localhost", 3124))
+  //.proxy(Proxy("localhost", 3124))
 
   var idNumbers = (1 to 10).iterator
 

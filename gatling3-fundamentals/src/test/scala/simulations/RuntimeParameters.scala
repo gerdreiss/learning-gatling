@@ -47,9 +47,14 @@ class RuntimeParameters extends Simulation {
       .get(s"videogames/$id")
       .check(status.is(200)))
 
-  def userCount: Int = getProperty("USERS", "5").toInt
-  def rampDuration: FiniteDuration = getProperty("RAMP_DURATION", "10").toInt.seconds
-  def testDuration: FiniteDuration = getProperty("TEST_DURATION", "60").toInt.seconds
+  def userCount: Int =
+    getProperty("USERS", "5").toInt
+
+  def rampDuration: FiniteDuration =
+    getProperty("RAMP_DURATION", "10").toInt.seconds
+
+  def testDuration: FiniteDuration =
+    getProperty("TEST_DURATION", "60").toInt.seconds
 
   private def getProperty(propertyName: String, defaultValue: String): String = {
     Option(System.getenv(propertyName))
